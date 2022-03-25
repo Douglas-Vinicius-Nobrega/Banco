@@ -1,6 +1,6 @@
 package contas
 
-import "Projetos-GoLand/Banco-GoLand/banco/Código/clientes"
+import "github.com/Alura/Banco/clientes"
 
 type ContaCorrente struct {
 	Titular       clientes.Titular

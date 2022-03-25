@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"Projetos-GoLand/Banco-GoLand/banco/Código/clientes"
-	"Projetos-GoLand/Banco-GoLand/banco/Código/contas"
+	"github.com/Alura/Banco/clientes"
+	"github.com/Alura/Banco/contas"
 )
 
 func main() {
