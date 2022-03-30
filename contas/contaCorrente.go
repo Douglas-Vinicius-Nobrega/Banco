@@ -3,13 +3,12 @@ package contas
 import "github.com/Alura/Banco/clientes"
 
 type ContaCorrente struct {
-	Titular       clientes.Titular
-	NumeroAgencia int
-	NumeroConta   int
-	saldo         float64 // em minusculo o saldo fica privado, assim a pessoa não consegue ter um saldo negativo
+	Titular                    clientes.Titular
+	NumeroAgencia, NumeroConta int
+	saldo                      float64 // em minusculo o saldo fica privado, assim a pessoa não consegue ter um saldo negativo
 }
 
-func (c *ContaCorrente) Sacar(valorDoSaque float64) string {
+func (c *ContaCorrente) Sacar(valorDoSaque float64) string { // c = ponteiro
 	podeSacar := valorDoSaque > 0 && valorDoSaque <= c.saldo
 	if podeSacar {
 		c.saldo -= valorDoSaque
@@ -19,7 +18,7 @@ func (c *ContaCorrente) Sacar(valorDoSaque float64) string {
 	}
 }
 
-func (c *ContaCorrente) Depositar(valorDoDeposito float64) (string, float64) {
+func (c *ContaCorrente) Depositar(valorDoDeposito float64) (string, float64) { // c = ponteiro
 	if valorDoDeposito > 0 {
 		c.saldo += valorDoDeposito
 		return "Deposito realizado com sucesso", c.saldo
@@ -28,7 +27,7 @@ func (c *ContaCorrente) Depositar(valorDoDeposito float64) (string, float64) {
 	}
 }
 
-func (c *ContaCorrente) Tranferir(valorDaTransferencia float64, contaDestino *ContaCorrente) bool {
+func (c *ContaCorrente) Tranferir(valorDaTransferencia float64, contaDestino *ContaCorrente) bool { // c = ponteiro
 	if valorDaTransferencia < c.saldo && valorDaTransferencia > 0 {
 		c.saldo -= valorDaTransferencia
 		contaDestino.Depositar(valorDaTransferencia)
@@ -38,6 +37,6 @@ func (c *ContaCorrente) Tranferir(valorDaTransferencia float64, contaDestino *Co
 	}
 }
 
-func (c *ContaCorrente) ObterSaldo() float64 {
+func (c *ContaCorrente) ObterSaldo() float64 { // c = ponteiro
 	return c.saldo // a conta que chamou, eu quero visualizar o saldo
 }

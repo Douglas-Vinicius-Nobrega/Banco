@@ -2,15 +2,25 @@ package main
 
 import (
 	"fmt"
+	"time"
 
+	"github.com/Alura/Banco/boleto"
 	"github.com/Alura/Banco/contas"
 )
 
 func main() {
-	contaExemplo := contas.ContaCorrente{}
 
-	contaExemplo.Depositar(1001)
+	contaDenis := contas.ContaPoupanca{}
+	contaDenis.Depositar(500)
 
-	fmt.Println(contaExemplo.ObterSaldo())
+	boleto.PagarBoleto(&contaDenis, 50)
+	contaLuisa := contas.ContaCorrente{}
+	contaLuisa.Depositar(1000)
 
+	boleto.PagarBoleto(&contaLuisa, 600)
+
+	fmt.Println(contaDenis.ObterSaldo(), contaLuisa.ObterSaldo())
+
+	data := time.Now()
+	fmt.Println(data)
 }
